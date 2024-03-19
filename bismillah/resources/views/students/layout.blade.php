@@ -22,7 +22,7 @@
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger" type="submit">Logout</button>        
-                <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('edit-profile') }}" class="btn btn-primary">Edit</a>
             </form>
           </div>
         </div>

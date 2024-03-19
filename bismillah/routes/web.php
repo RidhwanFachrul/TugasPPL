@@ -4,15 +4,15 @@
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+
  
  
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
  
-Route::group(['middleware' => 'guest'], function () {
+Route::group(['' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -20,12 +20,15 @@ Route::group(['middleware' => 'guest'], function () {
 });
  
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [HomeController::class, 'index']);
-    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+       Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+       Route::get('/edit-profile', [UserController::class, 'edit'])->name('edit-profile');
+       Route::post('/update-profile', [UserController::class, 'update'])->name('update-profile');
 
 });
 
 Route::resource("/student", StudentController::class);
+
+
+
 
 
